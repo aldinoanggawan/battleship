@@ -8,6 +8,7 @@ export const globalStyles = (
         margin: 0;
         min-height: 100%;
         font-family: Helvetica, Arial, sans-serif;
+        box-sizing: border-box;
       }
     `}
   />
