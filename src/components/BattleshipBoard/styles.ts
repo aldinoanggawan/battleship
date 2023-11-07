@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { GRAY, BOARD_BACKGROUND_COLOR, ORANGE } from '../../shared/colors';
 import { BREAKPOINT_MOBILE } from '../../shared/constants';
 
-const boardBorderWidth = 4;
+const boardBorderWidth = 8;
 
 export const Grid = styled.div({
   display: 'grid',
