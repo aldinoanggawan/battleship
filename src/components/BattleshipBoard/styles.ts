@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { GRAY, BOARD_BACKGROUND, ORANGE } from '../../shared/colors';
+import { GRAY, BOARD_BACKGROUND_COLOR, ORANGE } from '../../shared/colors';
 import { BREAKPOINT_MOBILE } from '../../shared/constants';
 
 const boardBorderWidth = 4;
@@ -13,7 +13,7 @@ export const Grid = styled.div({
 
   width: BREAKPOINT_MOBILE - boardBorderWidth * 2,
 
-  backgroundColor: BOARD_BACKGROUND,
+  backgroundColor: BOARD_BACKGROUND_COLOR,
 });
 
 export const Cell = styled.div(({ height = 0 }: { height?: number }) => ({
