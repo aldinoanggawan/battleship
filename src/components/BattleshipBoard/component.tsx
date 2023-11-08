@@ -1,4 +1,4 @@
-import { FC, Fragment, useLayoutEffect, useRef, useState } from 'react';
+import { FC, Fragment, useEffect, useRef, useState } from 'react';
 import { Cell, Grid } from './styles';
 import { BattleshipBoardProps } from './types';
 
@@ -7,7 +7,7 @@ export const BattleshipBoard: FC<BattleshipBoardProps> = ({ board }) => {
 
   const [itemHeight, setItemHeight] = useState(0);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     // get the 100% cell width and use it as the height
     setItemHeight(itemRef.current.clientWidth);
   }, []);
