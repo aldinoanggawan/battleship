@@ -13,6 +13,13 @@ const initialBoard: string[][] = Array.from({ length: 10 }, () =>
 const Home = () => {
   const [board, setBoard] = useState<string[][]>(initialBoard);
   const [score1, setScore1] = useState(0);
+  const [hitCounts, setHitCounts] = useState({
+    carrier: 0,
+    battleship: 0,
+    cruiser: 0,
+    submarine: 0,
+    destroyer: 0,
+  });
 
   const onClickCell = ({ i, j }: { i: number; j: number }): void => {
     // if the cell has been selected do an early return
@@ -25,8 +32,16 @@ const Home = () => {
 
     // if there's a ship at the selected cell
     if (hitShipIndex !== -1) {
+      const hitShip = layoutData.layout[hitShipIndex];
+
       // update score
       setScore1((prevScore) => prevScore + 1);
+
+      // update hit counts
+      setHitCounts((prevHitCounts) => ({
+        ...prevHitCounts,
+        [hitShip.ship]: prevHitCounts[hitShip.ship] + 1,
+      }));
     }
 
     const newBoard = [...board];
@@ -43,7 +58,7 @@ const Home = () => {
         <BattleshipBoard board={board} onClickCell={onClickCell} />
         <ShipScoreWrapper>
           <ScoreBoard score1={formattedScore1} />
-          <ShipList shipTypes={layoutData.shipTypes} />
+          <ShipList shipTypes={layoutData.shipTypes} hitCounts={hitCounts} />
         </ShipScoreWrapper>
       </Content>
     </Container>

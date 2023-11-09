@@ -3,16 +3,25 @@ import { ShipListProps, ShipType } from './types';
 import { images, shipImages } from '../../data/images';
 import { Container, Img, Item } from './styles';
 
-export const ShipList: FC<ShipListProps> = ({ shipTypes }) => {
+export const ShipList: FC<ShipListProps> = ({ shipTypes, hitCounts }) => {
   return (
     <Container>
       {Object.keys(shipTypes).map((shipType: ShipType) => {
+        const hitCount = hitCounts[shipType];
+
         return (
           <Item key={shipType}>
             <Img src={shipImages[shipType]} />
-            {Array.from({ length: shipTypes[shipType].size }).map(
-              (_, index) => {
-                return <Img key={index} icon src={images.missSmall} />;
+            {hitCounts[shipType] > 0 && (
+              <>
+                {Array.from({ length: hitCount }).map((_, hitIndex) => {
+                  return <Img key={hitIndex} icon src={images.hitSmall} />;
+                })}
+              </>
+            )}
+            {Array.from({ length: shipTypes[shipType].size - hitCount }).map(
+              (_, sizeIndex) => {
+                return <Img key={sizeIndex} icon src={images.missSmall} />;
               }
             )}
           </Item>
