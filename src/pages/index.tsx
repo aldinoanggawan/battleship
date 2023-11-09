@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BattleshipBoard } from '../components/BattleshipBoard/component';
-import { Container } from './styles';
+import { Container, Content, ShipScoreWrapper } from './styles';
 import { ScoreBoard } from '../components/ScoreBoard/component';
 import { ShipList } from '../components/ShipList/component';
 import { layoutData } from '../data/layout';
@@ -15,9 +15,13 @@ const Home = () => {
 
   return (
     <Container>
-      <BattleshipBoard board={board} />
-      <ScoreBoard score1='00' />
-      <ShipList shipTypes={layoutData.shipTypes} />
+      <Content>
+        <BattleshipBoard board={board} />
+        <ShipScoreWrapper>
+          <ScoreBoard score1='00' />
+          <ShipList shipTypes={layoutData.shipTypes} />
+        </ShipScoreWrapper>
+      </Content>
     </Container>
   );
 };

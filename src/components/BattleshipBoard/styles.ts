@@ -1,19 +1,25 @@
 import styled from '@emotion/styled';
 import { GRAY, BOARD_BACKGROUND_COLOR, ORANGE } from '../../shared/colors';
-import { BREAKPOINT_MOBILE } from '../../shared/constants';
-
-const boardBorderWidth = 8;
+import {
+  BREAKPOINT_DESKTOP,
+  BREAKPOINT_MOBILE,
+  BREAKPOINT_TABLET,
+} from '../../shared/constants';
 
 export const Grid = styled.div({
   display: 'grid',
   gridTemplateColumns: 'repeat(10, 1fr)',
   gridTemplateRows: 'repeat(10, 1fr)',
-
-  border: `${boardBorderWidth}px solid ${ORANGE}`,
-
-  width: BREAKPOINT_MOBILE - boardBorderWidth * 2,
+  border: `8px solid ${ORANGE}`,
+  minWidth: BREAKPOINT_MOBILE,
+  maxWidth: BREAKPOINT_TABLET,
+  margin: '0 auto',
 
   backgroundColor: BOARD_BACKGROUND_COLOR,
+
+  [`@media (min-width: ${BREAKPOINT_DESKTOP}px)`]: {
+    flex: 2,
+  },
 });
 
 export const Cell = styled.div(({ height = 0 }: { height?: number }) => ({
@@ -22,6 +28,10 @@ export const Cell = styled.div(({ height = 0 }: { height?: number }) => ({
   borderRight: `1px solid ${GRAY}`,
   borderBottom: `1px solid ${GRAY}`,
   cursor: 'pointer',
+
+  '&:hover': {
+    backgroundColor: GRAY,
+  },
 
   '&:nth-last-of-type(-n + 10)': {
     borderBottom: 'none',
