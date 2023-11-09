@@ -4,6 +4,7 @@ import { Container, Content, ShipScoreWrapper } from './styles';
 import { ScoreBoard } from '../components/ScoreBoard/component';
 import { ShipList } from '../components/ShipList/component';
 import { layoutData } from '../data/layout';
+import { HitCounts } from './types';
 
 // create a 2D array of 10x10 that's initially null
 const initialBoard: string[][] = Array.from({ length: 10 }, () =>
@@ -12,8 +13,8 @@ const initialBoard: string[][] = Array.from({ length: 10 }, () =>
 
 const Home = () => {
   const [board, setBoard] = useState<string[][]>(initialBoard);
-  const [score1, setScore1] = useState(0);
-  const [hitCounts, setHitCounts] = useState({
+  const [score1, setScore1] = useState<number>(0);
+  const [hitCounts, setHitCounts] = useState<HitCounts>({
     carrier: 0,
     battleship: 0,
     cruiser: 0,

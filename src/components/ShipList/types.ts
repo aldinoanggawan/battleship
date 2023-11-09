@@ -1,3 +1,5 @@
+import { HitCounts } from '../../pages/types';
+
 export enum ShipType {
   Carrier = 'carrier',
   Battleship = 'battleship',
@@ -13,11 +15,5 @@ export interface Ship {
 
 export interface ShipListProps {
   shipTypes: Record<ShipType, Ship>;
-  hitCounts: {
-    carrier: number;
-    battleship: number;
-    cruiser: number;
-    submarine: number;
-    destroyer: number;
-  };
+  hitCounts: HitCounts;
 }
