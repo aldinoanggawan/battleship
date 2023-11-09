@@ -12,6 +12,18 @@ export const BattleshipBoard: FC<BattleshipBoardProps> = ({ board }) => {
     setItemHeight(itemRef.current.clientWidth);
   }, []);
 
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setItemHeight(itemRef.current.clientWidth);
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
   return (
     <Grid>
       {board.map((row, rowIndex) => {
