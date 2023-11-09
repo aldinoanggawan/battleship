@@ -2,7 +2,10 @@ import { FC, Fragment, useEffect, useRef, useState } from 'react';
 import { Cell, Grid } from './styles';
 import { BattleshipBoardProps } from './types';
 
-export const BattleshipBoard: FC<BattleshipBoardProps> = ({ board }) => {
+export const BattleshipBoard: FC<BattleshipBoardProps> = ({
+  board,
+  onClickCell,
+}) => {
   const itemRef = useRef<HTMLDivElement>(null);
 
   const [itemHeight, setItemHeight] = useState(0);
@@ -31,7 +34,12 @@ export const BattleshipBoard: FC<BattleshipBoardProps> = ({ board }) => {
           <Fragment key={rowIndex}>
             {row.map((cell, cellIndex) => {
               return (
-                <Cell key={cellIndex} ref={itemRef} height={itemHeight}>
+                <Cell
+                  key={cellIndex}
+                  ref={itemRef}
+                  height={itemHeight}
+                  onClick={() => onClickCell({ i: rowIndex, j: cellIndex })}
+                >
                   {cell}
                 </Cell>
               );

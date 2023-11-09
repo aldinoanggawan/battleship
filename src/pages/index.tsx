@@ -11,12 +11,27 @@ const initialBoard: string[][] = Array.from({ length: 10 }, () =>
 );
 
 const Home = () => {
-  const [board] = useState<string[][]>(initialBoard);
+  const [board, setBoard] = useState<string[][]>(initialBoard);
+
+  const onClickCell = ({ i, j }: { i: number; j: number }): void => {
+    // if the cell has been selected do an early return
+    if (board[i][j]) return;
+
+    // check if there's a ship at the selected cell
+    const hitShipIndex = layoutData.layout.findIndex((ship) =>
+      ship.positions.some((position) => position[0] === i && position[1] === j)
+    );
+
+    const newBoard = [...board];
+    // assign X for hit and O for miss
+    newBoard[i][j] = hitShipIndex !== -1 ? 'X' : 'O';
+    setBoard(newBoard);
+  };
 
   return (
     <Container>
       <Content>
-        <BattleshipBoard board={board} />
+        <BattleshipBoard board={board} onClickCell={onClickCell} />
         <ShipScoreWrapper>
           <ScoreBoard score1='00' />
           <ShipList shipTypes={layoutData.shipTypes} />
