@@ -48,16 +48,17 @@ export const GameOverWrapper = styled.div({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '100vh',
   background: BLACK_TRANSLUCENT,
   position: 'absolute',
   top: 0,
   left: 0,
+  height: '100%',
   width: '100%',
+  padding: 20,
 });
 
 export const Text = styled.p({
-  fontSize: 32,
+  fontSize: 28,
   fontWeight: 'bold',
   textAlign: 'center',
   margin: '0 0 24px',
