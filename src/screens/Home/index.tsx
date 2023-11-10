@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BattleshipBoard } from '../components/BattleshipBoard/component';
+import { BattleshipBoard } from '../../components/BattleshipBoard/component';
 import {
   Button,
   Container,
@@ -8,9 +8,9 @@ import {
   ShipScoreWrapper,
   Text,
 } from './styles';
-import { ScoreBoard } from '../components/ScoreBoard/component';
-import { ShipList } from '../components/ShipList/component';
-import { layoutData } from '../data/layout';
+import { ScoreBoard } from '../../components/ScoreBoard/component';
+import { ShipList } from '../../components/ShipList/component';
+import { layoutData } from '../../data/layout';
 import { HitCounts } from './types';
 import {
   getInitialBoard,

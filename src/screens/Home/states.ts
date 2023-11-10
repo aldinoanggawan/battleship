@@ -1,4 +1,4 @@
-import { layoutData } from '../data/layout';
+import { layoutData } from '../../data/layout';
 import { HitCounts } from './types';
 
 // create a 2D array of 10x10 that's initially null

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { BREAKPOINT_DESKTOP, BREAKPOINT_TABLET } from '../shared/constants';
-import { BLACK_TRANSLUCENT, ORANGE, WHITE } from '../shared/colors';
+import { BREAKPOINT_DESKTOP, BREAKPOINT_TABLET } from '../../shared/constants';
+import { BLACK_TRANSLUCENT, ORANGE, WHITE } from '../../shared/colors';
 
 export const Container = styled.div({
   minHeight: '100vh',

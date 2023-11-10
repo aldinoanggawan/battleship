@@ -1,4 +1,4 @@
-import { HitCounts } from '../../screens/types';
+import { HitCounts } from '../../screens/Home/types';
 
 export enum ShipType {
   Carrier = 'carrier',
