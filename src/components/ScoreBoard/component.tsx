@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { ScoreProps } from './types';
 import { Container, Divider, Item, Text } from './styles';
 import { GREEN, ORANGE } from '../../shared/colors';
 
-export const ScoreBoard: FC<ScoreProps> = ({ score1, score2 = '00' }) => {
+export const ScoreBoard: FC<ScoreProps> = memo(({ score1, score2 = '00' }) => {
   return (
     <Container>
       <Item backgroundColor={ORANGE}>
@@ -18,4 +18,4 @@ export const ScoreBoard: FC<ScoreProps> = ({ score1, score2 = '00' }) => {
       </Item>
     </Container>
   );
-};
+});

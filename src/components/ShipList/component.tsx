@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { ShipListProps, ShipType } from './types';
 import { images, shipImages } from '../../data/images';
 import { Container, Img, Item } from './styles';
 
-export const ShipList: FC<ShipListProps> = ({ shipTypes, hitCounts }) => {
+export const ShipList: FC<ShipListProps> = memo(({ shipTypes, hitCounts }) => {
   return (
     <Container>
       {Object.keys(shipTypes).map((shipType: ShipType) => {
@@ -43,4 +43,4 @@ export const ShipList: FC<ShipListProps> = ({ shipTypes, hitCounts }) => {
       })}
     </Container>
   );
-};
+});
