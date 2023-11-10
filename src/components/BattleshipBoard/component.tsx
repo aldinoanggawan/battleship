@@ -42,7 +42,10 @@ export const BattleshipBoard: FC<BattleshipBoardProps> = ({
                   onClick={() => onClickCell({ i: rowIndex, j: cellIndex })}
                 >
                   {cell && (
-                    <Img src={cell === 'X' ? images.hit : images.miss} />
+                    <Img
+                      src={cell === 'X' ? images.hit : images.miss}
+                      draggable='false'
+                    />
                   )}
                 </Cell>
               );
