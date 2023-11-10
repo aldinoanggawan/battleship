@@ -1,6 +1,7 @@
 import { FC, Fragment, useEffect, useRef, useState } from 'react';
-import { Cell, Grid } from './styles';
+import { Cell, Grid, Img } from './styles';
 import { BattleshipBoardProps } from './types';
+import { images } from '../../data/images';
 
 export const BattleshipBoard: FC<BattleshipBoardProps> = ({
   board,
@@ -40,7 +41,9 @@ export const BattleshipBoard: FC<BattleshipBoardProps> = ({
                   height={itemHeight}
                   onClick={() => onClickCell({ i: rowIndex, j: cellIndex })}
                 >
-                  {cell}
+                  {cell && (
+                    <Img src={cell === 'X' ? images.hit : images.miss} />
+                  )}
                 </Cell>
               );
             })}

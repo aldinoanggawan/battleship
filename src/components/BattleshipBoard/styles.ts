@@ -14,7 +14,6 @@ export const Grid = styled.div({
   minWidth: BREAKPOINT_MOBILE,
   maxWidth: BREAKPOINT_TABLET,
   margin: '0 auto',
-
   backgroundColor: BOARD_BACKGROUND_COLOR,
 
   [`@media (min-width: ${BREAKPOINT_DESKTOP}px)`]: {
@@ -28,6 +27,10 @@ export const Cell = styled.div(({ height = 0 }: { height?: number }) => ({
   borderRight: `1px solid ${GRAY}`,
   borderBottom: `1px solid ${GRAY}`,
   cursor: 'pointer',
+  overflow: 'hidden',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 
   '&:hover': {
     backgroundColor: GRAY,
@@ -40,3 +43,11 @@ export const Cell = styled.div(({ height = 0 }: { height?: number }) => ({
     borderRight: 'none',
   },
 }));
+
+export const Img = styled.img({
+  // the image has its own border at the edge
+  // so we need to make it a bit bigger to hide it
+  width: '105%',
+  height: '105%',
+  objectFit: 'cover',
+});
