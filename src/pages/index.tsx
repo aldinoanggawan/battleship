@@ -12,30 +12,16 @@ import { ScoreBoard } from '../components/ScoreBoard/component';
 import { ShipList } from '../components/ShipList/component';
 import { layoutData } from '../data/layout';
 import { HitCounts } from './types';
-
-// create a 2D array of 10x10 that's initially null
-const getInitialBoard = (): string[][] => {
-  return Array.from({ length: 10 }, () =>
-    Array.from({ length: 10 }, () => null)
-  );
-};
-
-// create a deep copy of layoutData.layout
-const getInitialLayout = (): typeof layoutData.layout => {
-  return JSON.parse(JSON.stringify(layoutData.layout));
-};
-
-const initialHitCounts: HitCounts = {
-  carrier: 0,
-  battleship: 0,
-  cruiser: 0,
-  submarine: 0,
-  destroyer: 0,
-};
+import {
+  getInitialBoard,
+  getInitialLayout,
+  initialHitCounts,
+  scoreInitialState,
+} from './states';
 
 const Home = () => {
   const [board, setBoard] = useState<string[][]>(getInitialBoard());
-  const [score1, setScore1] = useState<number>(0);
+  const [score1, setScore1] = useState<number>(scoreInitialState);
   const [hitCounts, setHitCounts] = useState<HitCounts>(initialHitCounts);
   const [layout, setLayout] = useState(getInitialLayout());
 
@@ -92,7 +78,7 @@ const Home = () => {
   const onRestart = (): void => {
     setLayout(getInitialLayout());
     setBoard(getInitialBoard());
-    setScore1(0);
+    setScore1(scoreInitialState);
     setHitCounts(initialHitCounts);
   };
 
