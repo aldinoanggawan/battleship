@@ -86,19 +86,18 @@ const Home = () => {
 
   return (
     <Container>
-      {layout.length === 0 ? (
+      <Content>
+        <BattleshipBoard board={board} onClickCell={onClickCell} />
+        <ShipScoreWrapper>
+          <ScoreBoard score1={formattedScore1} />
+          <ShipList shipTypes={layoutData.shipTypes} hitCounts={hitCounts} />
+        </ShipScoreWrapper>
+      </Content>
+      {layout.length === 0 && (
         <GameOverWrapper>
-          <Text>Game over</Text>
-          <Button onClick={onRestart}>Restart</Button>
+          <Text>You have sunk all the ships!</Text>
+          <Button onClick={onRestart}>Play again</Button>
         </GameOverWrapper>
-      ) : (
-        <Content>
-          <BattleshipBoard board={board} onClickCell={onClickCell} />
-          <ShipScoreWrapper>
-            <ScoreBoard score1={formattedScore1} />
-            <ShipList shipTypes={layoutData.shipTypes} hitCounts={hitCounts} />
-          </ShipScoreWrapper>
-        </Content>
       )}
     </Container>
   );

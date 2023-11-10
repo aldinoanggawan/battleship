@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { BREAKPOINT_DESKTOP, BREAKPOINT_TABLET } from '../shared/constants';
-import { ORANGE } from '../shared/colors';
+import { BLACK_TRANSLUCENT, ORANGE, WHITE } from '../shared/colors';
 
 export const Container = styled.div({
   minHeight: '100vh',
@@ -49,13 +49,19 @@ export const GameOverWrapper = styled.div({
   alignItems: 'center',
   justifyContent: 'center',
   height: '100vh',
+  background: BLACK_TRANSLUCENT,
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
 });
 
 export const Text = styled.p({
-  fontSize: 24,
+  fontSize: 32,
   fontWeight: 'bold',
   textAlign: 'center',
   margin: '0 0 24px',
+  color: WHITE,
 });
 
 export const Button = styled.button({
