@@ -20,10 +20,10 @@ import {
 } from './states';
 
 export const Home = () => {
-  const [board, setBoard] = useState<string[][]>(getInitialBoard());
+  const [board, setBoard] = useState<string[][]>(getInitialBoard);
   const [score1, setScore1] = useState<number>(scoreInitialState);
   const [hitCounts, setHitCounts] = useState<HitCounts>(initialHitCounts);
-  const [layout, setLayout] = useState(getInitialLayout());
+  const [layout, setLayout] = useState(getInitialLayout);
 
   const onClickCell = ({ i, j }: { i: number; j: number }): void => {
     // if the cell has been selected do an early return
