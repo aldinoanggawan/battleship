@@ -1,23 +1,17 @@
 import { useState } from 'react';
 import { BattleshipBoard } from '../../components/BattleshipBoard/component';
-import {
-  Button,
-  Container,
-  Content,
-  GameOverWrapper,
-  ShipScoreWrapper,
-  Text,
-} from './styles';
+import { GameOver } from '../../components/GameOver/component';
 import { ScoreBoard } from '../../components/ScoreBoard/component';
 import { ShipList } from '../../components/ShipList/component';
 import { layoutData } from '../../data/layout';
-import { HitCounts } from './types';
 import {
   getInitialBoard,
   getInitialLayout,
   initialHitCounts,
   scoreInitialState,
 } from './states';
+import { Container, Content, ShipScoreWrapper } from './styles';
+import { HitCounts } from './types';
 
 export const Home = () => {
   const [board, setBoard] = useState<string[][]>(getInitialBoard);
@@ -93,12 +87,7 @@ export const Home = () => {
           <ShipList shipTypes={layoutData.shipTypes} hitCounts={hitCounts} />
         </ShipScoreWrapper>
       </Content>
-      {layout.length === 0 && (
-        <GameOverWrapper>
-          <Text>You have sunk all the ships!</Text>
-          <Button onClick={onRestart}>Play again</Button>
-        </GameOverWrapper>
-      )}
+      {layout.length === 0 && <GameOver onClick={onRestart} />}
     </Container>
   );
 };
