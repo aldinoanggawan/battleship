@@ -4,12 +4,7 @@ import { GameOver } from '../../components/GameOver/component';
 import { ScoreBoard } from '../../components/ScoreBoard/component';
 import { ShipList } from '../../components/ShipList/component';
 import { layoutData } from '../../data/layout';
-import {
-  getInitialBoard,
-  getInitialLayout,
-  initialHitCounts,
-  scoreInitialState,
-} from './states';
+import { getInitialBoard, initialHitCounts, scoreInitialState } from './states';
 import { Container, Content, ShipScoreWrapper } from './styles';
 import { HitCounts } from './types';
 
@@ -17,7 +12,7 @@ export const Home = () => {
   const [board, setBoard] = useState<string[][]>(getInitialBoard);
   const [score1, setScore1] = useState<number>(scoreInitialState);
   const [hitCounts, setHitCounts] = useState<HitCounts>(initialHitCounts);
-  const [layout, setLayout] = useState(getInitialLayout);
+  const [layout, setLayout] = useState(layoutData.layout);
 
   const onClickCell = ({ i, j }: { i: number; j: number }): void => {
     // if the cell has been selected do an early return
@@ -43,20 +38,28 @@ export const Home = () => {
 
       // update layout
       setLayout((prevLayout) => {
-        const newLayout = [...prevLayout];
+        return prevLayout
+          .map((layout, layoutIndex) => {
+            // remove the hit position from the ship
+            if (layoutIndex === hitShipIndex) {
+              return {
+                ...layout,
+                positions: layout.positions.filter(
+                  (position) => !(position[0] === i && position[1] === j)
+                ),
+              };
+            }
 
-        // remove the hit position from the ship
-        const newHitShip = newLayout[hitShipIndex];
-        newHitShip.positions = newHitShip.positions.filter(
-          (position) => !(position[0] === i && position[1] === j)
-        );
+            return layout;
+          })
+          .filter((layout) => {
+            // remove the ship from layout if it's sunk
+            if (layout.positions.length === 0) {
+              return false;
+            }
 
-        // remove the ship from layout if it's sunk
-        if (newHitShip.positions.length === 0) {
-          newLayout.splice(hitShipIndex, 1);
-        }
-
-        return newLayout;
+            return true;
+          });
       });
     }
 
@@ -70,7 +73,7 @@ export const Home = () => {
   };
 
   const onRestart = (): void => {
-    setLayout(getInitialLayout());
+    setLayout(layoutData.layout);
     setBoard(getInitialBoard());
     setScore1(scoreInitialState);
     setHitCounts(initialHitCounts);
