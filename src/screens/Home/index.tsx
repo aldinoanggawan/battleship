@@ -4,12 +4,12 @@ import { GameOver } from '../../components/GameOver/component';
 import { ScoreBoard } from '../../components/ScoreBoard/component';
 import { ShipList } from '../../components/ShipList/component';
 import { layoutData } from '../../data/layout';
-import { getInitialBoard, initialHitCounts, scoreInitialState } from './states';
+import { initialBoard, initialHitCounts, scoreInitialState } from './states';
 import { Container, Content, ShipScoreWrapper } from './styles';
 import { HitCounts } from './types';
 
 export const Home = () => {
-  const [board, setBoard] = useState<string[][]>(getInitialBoard);
+  const [board, setBoard] = useState<string[][]>(initialBoard);
   const [score1, setScore1] = useState<number>(scoreInitialState);
   const [hitCounts, setHitCounts] = useState<HitCounts>(initialHitCounts);
   const [layout, setLayout] = useState(layoutData.layout);
@@ -65,16 +65,25 @@ export const Home = () => {
 
     // update board
     setBoard((prevBoard) => {
-      const newBoard = [...prevBoard];
-      // assign X for hit and O for miss
-      newBoard[i][j] = hitShipIndex !== -1 ? 'X' : 'O';
-      return newBoard;
+      return prevBoard.map((row, rowIndex) => {
+        if (rowIndex === i) {
+          return row.map((cell, cellIndex) => {
+            if (cellIndex === j) {
+              return hitShipIndex !== -1 ? 'X' : 'O';
+            }
+
+            return cell;
+          });
+        }
+
+        return row;
+      });
     });
   };
 
   const onRestart = (): void => {
     setLayout(layoutData.layout);
-    setBoard(getInitialBoard());
+    setBoard(initialBoard);
     setScore1(scoreInitialState);
     setHitCounts(initialHitCounts);
   };
